@@ -3,27 +3,28 @@
 
 using namespace std;
 
+void norm(float*, int);
+
 int main() {
 	setlocale(LC_ALL, "rus");
 	cout << "                            Анализ иерархий\n";
 	cout << "                          методом Томаса Саати\n";
 	cout << "Введите колличество критериев оценивания\n";
-	int cr_num;
-	int digit;
+	int cr_num, i, j;
 	cin >> cr_num;
 	float *coefficients = new float[cr_num];
-	for (int i = 0; i < cr_num; i++) {
+	for (i = 0; i < cr_num; i++) {
 		coefficients[i] = 0;
 	}
 	
-	for (int i = 0; i < cr_num; i++) {
+	for (i = 0; i < cr_num; i++) {
 		cout << "   " << i + 1 << "-й";
 	}
 	cout << "   козфициент";
-	for (int i = 0; i < cr_num; i++) {
+	for (i = 0; i < cr_num; i++) {
 		cout << "\n" << i + 1 << "-й";
 		cout << " ";
-		for (int j = 0; j < cr_num; j ++)
+		for (j = 0; j < cr_num; j ++)
 			cout << "/     ";
 	}
 
@@ -36,8 +37,8 @@ int main() {
 	position.X = 3;
 	position.Y = 5;
 	SetConsoleCursorPosition(hConsole, position);
-	for (int i = 0; i < cr_num; i++) {
-		for (int j = 0; j < cr_num; j++) {
+	for (i = 0; i < cr_num; i++) {
+		for (j = 0; j < cr_num; j++) {
 			cin >> numerator;
 			position.X += 2;
 			SetConsoleCursorPosition(hConsole, position);
@@ -52,5 +53,34 @@ int main() {
 		SetConsoleCursorPosition(hConsole, position);
 	}
 
+	norm(coefficients, cr_num);
+	position.X = 3 + 6 * cr_num;
+	position.Y = 5;
+	SetConsoleCursorPosition(hConsole, position);
+	for (i = 0; i < cr_num; i++) {
+		cout << coefficients[i];
+		position.Y ++;
+		SetConsoleCursorPosition(hConsole, position);
+	}
+	cout << endl;
+
 	return 0;
+}
+
+void norm(float *mass, int size) {
+	float sum = 0;
+	float normed_c;
+	float tail;
+	for (int i = 0; i < size; i++)
+		sum += mass[i];
+	for (int i = 0; i < size; i++) {
+		normed_c = mass[i] / sum;
+		tail = (normed_c * 100 - (int)(normed_c * 100)) / 100;
+		cout << tail<<endl;
+		if (tail * 1000 >= 5) {
+			normed_c += 0.01;
+		}
+		normed_c -= tail;
+		mass[i] = normed_c;
+	}
 }

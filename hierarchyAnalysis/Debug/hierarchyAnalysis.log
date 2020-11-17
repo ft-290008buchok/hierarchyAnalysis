@@ -1,4 +1,4 @@
 ﻿  main.cpp
-f:\1\для института\документы для курсовых и лаб\3-й семестр\алг и струк данных\репоз\hierarchyanalysis\hierarchyanalysis\main.cpp(12): warning C4101: 'digit': unreferenced local variable
+f:\1\для института\документы для курсовых и лаб\3-й семестр\алг и струк данных\репоз\hierarchyanalysis\hierarchyanalysis\main.cpp(81): warning C4305: '+=': truncation from 'double' to 'float'
   hierarchyAnalysis.vcxproj -> F:\1\для института\документы для курсовых и лаб\3-й семестр\Алг и струк данных\репоз\hierarchyAnalysis\hierarchyAnalysis\Debug\hierarchyAnalysis.exe
   hierarchyAnalysis.vcxproj -> F:\1\для института\документы для курсовых и лаб\3-й семестр\Алг и струк данных\репоз\hierarchyAnalysis\hierarchyAnalysis\Debug\hierarchyAnalysis.pdb (Full PDB)
