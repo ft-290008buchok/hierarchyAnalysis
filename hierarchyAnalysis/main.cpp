@@ -2,6 +2,7 @@
 Сравенеие критериев первого уровня*/
 
 #include<iostream>
+#include <conio.h>
 #include <Windows.h>
 
 using namespace std;
@@ -83,9 +84,9 @@ int main() {
 	}
 	cout << endl;
 
-	int finish;
-	cout << "для завершения работы нажмите 1";
-	cin >> finish;
+	cout << "Для продолжения нажмите любую клавишу";
+	_getch();  //пауза
+
 	return 0;
 }
 
