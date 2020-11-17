@@ -20,10 +20,19 @@ int main() {
 
 	//Массив хранящий значения коэффициентов
 	float *coefficients = new float[cr_num];
-	for (i = 0; i < cr_num; i++) {
+	for (i = 0; i < cr_num; i++) 
 		coefficients[i] = 0;
-	}
 	
+	float **relations = new float*[cr_num];
+
+	for (i = 0; i < cr_num; i++)
+		relations[i] = new float[cr_num];
+		
+
+	for (i = 0; i < cr_num; i++)
+		for (j = 0; j < cr_num; j++)
+			relations[i][j] = 0;
+
 	/*Создание таблицы для ввода матрицы
 	дробей попарного сравнения критериев*/
 	for (i = 0; i < cr_num; i++) {
@@ -52,23 +61,39 @@ int main() {
 	// Перемещение каретки по заданным координатам
 	SetConsoleCursorPosition(hConsole, position);
 
-	/*Ввод дробей попарного сравнения критериев
-	и их суммирование по строкам*/
+	/*Ввод дробей попарного сравнения критериев*/
 	for (i = 0; i < cr_num; i++) {
-		for (j = 0; j < cr_num; j++) {
+		for (j = i; j < cr_num; j++) {
 			cin >> numerator;
 			position.X += 2;
 			SetConsoleCursorPosition(hConsole, position);
 			cin >> denominator;
 			relation = numerator / denominator;
-			coefficients[i] += relation;
+			relations[i][j] = relation;
+			relations[j][i] = 1 / relation;
+
+			position.Y += (j - i);
+			position.X -= (6 * (j - i) + 2);
+			SetConsoleCursorPosition(hConsole, position);
+			cout << denominator;
+			position.X += 2;
+			SetConsoleCursorPosition(hConsole, position);
+			cout << numerator;
+			position.X += (6 * (j - i));
+			position.Y -= (j - i);
+			SetConsoleCursorPosition(hConsole, position);
+
 			position.X += 4;
 			SetConsoleCursorPosition(hConsole, position);
 		}
-		position.X = 3;
+		position.X = 3 + 6 * (i + 1);
 		position.Y += 1;
 		SetConsoleCursorPosition(hConsole, position);
 	}
+
+	for (i = 0; i < cr_num; i++)
+		for (j = 0; j < cr_num; j++)
+			coefficients[i] += relations[i][j];
 
 	//Нормирование и округление сумм по строкам
 	norm(coefficients, cr_num);
