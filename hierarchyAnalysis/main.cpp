@@ -72,6 +72,7 @@ int main() {
 			relations[i][j] = relation;
 			relations[j][i] = 1 / relation;
 
+			//Вывод обратной дроби в соответствующую ячейку матрицы
 			position.Y += (j - i);
 			position.X -= (6 * (j - i) + 2);
 			SetConsoleCursorPosition(hConsole, position);
@@ -88,6 +89,7 @@ int main() {
 		SetConsoleCursorPosition(hConsole, position);
 	}
 
+	//Суммирование отношений по строкам
 	for (i = 0; i < cr_num; i++)
 		for (j = 0; j < cr_num; j++)
 			coefficients[i] += relations[i][j];
