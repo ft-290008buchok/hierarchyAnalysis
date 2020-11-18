@@ -23,12 +23,11 @@ int main() {
 	for (i = 0; i < cr_num; i++) 
 		coefficients[i] = 0;
 	
+	//Массив, храняхий значения дробей попарного сравнения
 	float **relations = new float*[cr_num];
-
 	for (i = 0; i < cr_num; i++)
 		relations[i] = new float[cr_num];
 		
-
 	for (i = 0; i < cr_num; i++)
 		for (j = 0; j < cr_num; j++)
 			relations[i][j] = 0;
@@ -69,6 +68,7 @@ int main() {
 			SetConsoleCursorPosition(hConsole, position);
 			cin >> denominator;
 			relation = numerator / denominator;
+			//Присваивание отношений элементам массива
 			relations[i][j] = relation;
 			relations[j][i] = 1 / relation;
 
@@ -79,11 +79,8 @@ int main() {
 			position.X += 2;
 			SetConsoleCursorPosition(hConsole, position);
 			cout << numerator;
-			position.X += (6 * (j - i));
+			position.X += (6 * (j - i) + 4);
 			position.Y -= (j - i);
-			SetConsoleCursorPosition(hConsole, position);
-
-			position.X += 4;
 			SetConsoleCursorPosition(hConsole, position);
 		}
 		position.X = 3 + 6 * (i + 1);
